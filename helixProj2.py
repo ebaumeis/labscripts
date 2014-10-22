@@ -15,18 +15,18 @@ def vectorRead(data, line):
   return vectors
 
 # arguments passed to calculations should be in the form of three element lists
-def calculations(cA, cB, dist1, dist2):
+def calculations(cA, cB, dist1):
   
-  # calculate the cross product of the two distances 
-  cross = np.cross(dist1,dist2)
+  # Use the distance itself to define the vector instead of the cross product
+  vector = dist1
   # calculate the three new axes based on the plane
   normal = np.cross(cA,cB)
   axis1 = cA
   axis2 = np.cross(normal, cA)
   # calculate the distance from the point to the plane and the scalars in the directions of the axes
-  s = np.dot(normal, cross)
-  t1 = np.dot(axis1, cross)
-  t2 = np.dot(axis2, cross) 
+  s = np.dot(normal, vector)
+  t1 = np.dot(axis1, vector)
+  t2 = np.dot(axis2, vector) 
   # take the scalars and turn them back into a vector
   projection = (t1,t2)
   return projection
@@ -41,8 +41,8 @@ def printdata(inputfile, distOut):
     vectors = vectorRead(data,y)
     distOut.write(repr(data[y,0]) + ' ')
   
-    for x in range(0,numberqds-2):
-      proj = calculations(vectors[3*x],vectors[3*x+1],vectors[3*x+2],vectors[3*(x+1)+2])
+    for x in range(0,numberqds-1):
+      proj = calculations(vectors[3*x],vectors[3*x+1],vectors[3*x+2])
       if x == (numberqds-1):
         distOut.write(repr(proj[0]) + ' ' + repr(proj[1]))
       else:
