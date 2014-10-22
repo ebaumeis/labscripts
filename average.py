@@ -4,9 +4,9 @@ import numpy as np
 import scipy.stats
 import sys
 
-def average(infile, minstep, maxstep):
-  data = np.loadtxt(infile)
-  for x in range(1,data.shape[1])
+def average(infile, column, minstep, maxstep):
+  x = [int(column)]
+  data = np.loadtxt(infile, usecols=(x))
   a = int(minstep)
   b = int(maxstep)  
   segment = data[a:b]
