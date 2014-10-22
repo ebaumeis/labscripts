@@ -38,7 +38,6 @@ def printCarbons(gqds,output):
   y=1
   for x in gqds:
     z=0
-    carbons = [0,0,0,0,0,0,0,0,0,0,0]
     numlist = x.split()
     if y==len(gqds):    
       output.write('c%sa: DISTANCE ATOMS=%s,%s COMPONENTS' % (repr(y),repr(int(numlist[0])+1),repr(int(numlist[40])+1)) + '\n')
