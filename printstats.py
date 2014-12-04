@@ -12,14 +12,14 @@ def stats(infile, column, minstep, maxstep):
   segment = data[a:b]
   return repr(np.mean(segment)) + ' ' + repr(2*1.96*scipy.stats.sem(segment))
 
-def rows(infile, outfile):
+def rows(infile, outfile, minstep, maxstep):
   out = open(outfile,'w')
   data = np.loadtxt(infile,skiprows=1)
   for x in range(1,data.shape[1]):
-    out.write(stats(infile,x,0,-1) + ' ' + repr(x) + '-' + repr(x+1) + '\n')
+    out.write(stats(infile,x,minstep,maxstep) + ' ' + repr(x) + '-' + repr(x+1) + '\n')
 
 def main():
-  rows(sys.argv[1], sys.argv[2])
+  rows(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
 
 if __name__ == '__main__':
   main()
