@@ -3,6 +3,8 @@
 import numpy as np
 import sys
 
+# This allows me to make a 1D histogram from 2D data when one of the dimensions is in a certain range
+
 def makeList(infile, low, high):
   data1 = np.loadtxt(infile, usecols=([1]))
   data3 = np.loadtxt(infile, usecols=([3]))
